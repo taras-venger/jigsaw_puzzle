@@ -39,16 +39,6 @@ class App extends Component {
     this.getImage();
   }
 
-  setNumberOfRows = () =>
-    this.setState({
-      numberOfRows: document.getElementById('sliderRows').value
-    });
-
-  setNumberOfColumns = () =>
-    this.setState({
-      numberOfColumns: document.getElementById('sliderColumns').value
-    });
-
   cutImage = (image, imgWidth, imgHeight, rows, columns) => {
     let pieces = [];
     for (let x = 0; x < columns; x++) {
@@ -157,7 +147,7 @@ class App extends Component {
   render() {
     const enabled = this.state.enableIcons;
     const allowClick = fn => {
-      return enabled ? fn : () => {};
+      return enabled ? fn : undefined;
     };
 
     return (
@@ -216,15 +206,15 @@ class App extends Component {
           {this.state.showSettings && (
             <SlidersContainer>
               <Slider
-                id='sliderRows'
                 title='Rows'
-                getValue={this.setNumberOfRows}
+                getValue={e => this.setState({ numberOfRows: e.target.value })}
                 defaultValue={this.state.numberOfRows}
               />
               <Slider
-                id='sliderColumns'
                 title='Columns'
-                getValue={this.setNumberOfColumns}
+                getValue={e =>
+                  this.setState({ numberOfColumns: e.target.value })
+                }
                 defaultValue={this.state.numberOfColumns}
               />
               <button className='btn' onClick={this.toggleSettingsModal}>

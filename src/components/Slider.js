@@ -8,7 +8,6 @@ const Slider = props => {
       </p>
       <input
         type='range'
-        id={props.id}
         title={props.title}
         onInput={props.getValue}
         defaultValue={props.defaultValue}
