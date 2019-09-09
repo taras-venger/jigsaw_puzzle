@@ -1,5 +1,6 @@
 import React from 'react';
 import Cell from './Cell';
+import PropTypes from 'prop-types';
 
 const Frame = props => {
   const { imageWidth, imageHeight, rows, columns } = props;
@@ -32,6 +33,13 @@ const Frame = props => {
       {fillFrame()}
     </div>
   );
+};
+
+Frame.propTypes = {
+  imageWidth: PropTypes.number,
+  imageHeight: PropTypes.number,
+  rows: PropTypes.number,
+  columns: PropTypes.number
 };
 
 export default Frame;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Image = props => {
   const { imageWidth, imageHeight } = props;
@@ -18,6 +19,13 @@ const Image = props => {
       <img src={props.url} alt='' hidden={props.hideImage} />
     </div>
   );
+};
+
+Image.propTypes = {
+  imageWidth: PropTypes.number,
+  imageHeight: PropTypes.number,
+  url: PropTypes.string,
+  hidden: PropTypes.bool
 };
 
 export default Image;

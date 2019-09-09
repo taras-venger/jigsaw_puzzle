@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Piece = props => {
   const { id, height, width, url } = props;
@@ -40,6 +41,13 @@ const Piece = props => {
       onDragOver={dragOver}
     />
   );
+};
+
+Piece.propTypes = {
+  id: PropTypes.number,
+  height: PropTypes.number,
+  width: PropTypes.number,
+  url: PropTypes.string
 };
 
 export default Piece;

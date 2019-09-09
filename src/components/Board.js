@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const allowDrop = e => {
   e.preventDefault();
@@ -22,5 +23,9 @@ const Board = props => (
     {props.children}
   </div>
 );
+
+Board.propTypes = {
+  children: PropTypes.array
+};
 
 export default Board;

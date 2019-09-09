@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Cell = props => {
   const { cellWidth, cellHeight } = props;
@@ -40,6 +41,11 @@ const Cell = props => {
       onDrop={drop}
     ></div>
   );
+};
+
+Cell.propTypes = {
+  cellWidth: PropTypes.number,
+  cellHeight: PropTypes.number
 };
 
 export default Cell;

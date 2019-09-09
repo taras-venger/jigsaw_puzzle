@@ -207,13 +207,15 @@ class App extends Component {
             <SlidersContainer>
               <Slider
                 title='Rows'
-                getValue={e => this.setState({ numberOfRows: e.target.value })}
+                getValue={e =>
+                  this.setState({ numberOfRows: parseInt(e.target.value) })
+                }
                 defaultValue={this.state.numberOfRows}
               />
               <Slider
                 title='Columns'
                 getValue={e =>
-                  this.setState({ numberOfColumns: e.target.value })
+                  this.setState({ numberOfColumns: parseInt(e.target.value) })
                 }
                 defaultValue={this.state.numberOfColumns}
               />

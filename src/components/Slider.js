@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Slider = props => {
   return (
@@ -17,6 +18,12 @@ const Slider = props => {
       />
     </div>
   );
+};
+
+Slider.propTypes = {
+  title: PropTypes.string,
+  getValue: PropTypes.func,
+  defaultValue: PropTypes.number
 };
 
 export default Slider;
