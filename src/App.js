@@ -140,7 +140,7 @@ class App extends Component {
   };
 
   toggleSettingsModal = () =>
-    this.setState({ showSettings: !this.state.showSettings });
+    this.setState(({ showSettings }) => ({ showSettings: !showSettings }));
 
   toggleViewImage = () => this.setState({ viewImage: !this.state.viewImage });
 
