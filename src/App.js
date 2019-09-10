@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Backdrop from './components/Backdrop';
 import SlidersContainer from './components/SlidersContainer';
 import Slider from './components/Slider';
+import Spinner from './components/Spinner';
 import Icon from './components/Icon';
 import RefreshIcon from './icons/refresh.png';
 import PlayIcon from './icons/play.png';
@@ -25,14 +26,22 @@ class App extends Component {
     pieces: [],
     showSettings: false,
     enableIcons: true,
-    viewImage: false
+    viewImage: false,
+    showSpinner: false
   };
 
   getImage = () => {
     const { imageWidth, imageHeight } = this.state;
+    this.setState({ showSpinner: true, enableIcons: false });
     axios
       .get(`https://source.unsplash.com/random/${imageWidth}x${imageHeight}`)
-      .then(image => this.setState({ imageURL: image.request.responseURL }));
+      .then(image =>
+        this.setState({
+          imageURL: image.request.responseURL,
+          showSpinner: false,
+          enableIcons: true
+        })
+      );
   };
 
   componentDidMount() {
@@ -146,6 +155,7 @@ class App extends Component {
 
   render() {
     const enabled = this.state.enableIcons;
+    const showSpinner = this.state.showSpinner;
     const allowClick = fn => {
       return enabled ? fn : undefined;
     };
@@ -174,10 +184,10 @@ class App extends Component {
                 click={allowClick(this.startGame)}
               />
               <Icon
-                enabled={true}
+                enabled={!showSpinner}
                 src={ViewIcon}
                 title='View'
-                click={this.toggleViewImage}
+                click={!showSpinner ? this.toggleViewImage : undefined}
               />
             </Navbar>
             <Image
@@ -186,6 +196,7 @@ class App extends Component {
               imageHeight={this.state.imageHeight}
               hideImage={this.state.pieces.length > 0}
             />
+            {showSpinner && <Spinner />}
             {this.state.pieces}
           </Board>
           <Frame

@@ -60,3 +60,24 @@
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
 }
+
+.spinner {
+  position: absolute;
+  height: 70px;
+  width: 70px;
+  top: 50%;
+  left: 50%;
+  margin-top: -35px;
+  margin-left: -35px;
+  border-radius: 50%;
+  /* border: 3px solid lightgrey; */
+  border-top: 3px solid coral;
+  border-right: 3px solid transparent;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
