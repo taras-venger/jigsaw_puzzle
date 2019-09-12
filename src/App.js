@@ -24,22 +24,21 @@ class App extends Component {
     numberOfRows: 5,
     numberOfColumns: 6,
     pieces: [],
-    showSettings: false,
-    enableIcons: true,
+    gameStarted: false,
     viewImage: false,
+    showSettings: false,
     showSpinner: false
   };
 
   getImage = () => {
     const { imageWidth, imageHeight } = this.state;
-    this.setState({ showSpinner: true, enableIcons: false });
+    this.setState({ showSpinner: true });
     axios
       .get(`https://source.unsplash.com/random/${imageWidth}x${imageHeight}`)
       .then(image =>
         this.setState({
           imageURL: image.request.responseURL,
-          showSpinner: false,
-          enableIcons: true
+          showSpinner: false
         })
       );
   };
@@ -106,8 +105,6 @@ class App extends Component {
     };
   };
 
-  disableIcons = () => this.setState({ enableIcons: false });
-
   startGame = () => {
     const {
       imageURL,
@@ -141,10 +138,9 @@ class App extends Component {
       this.setState({
         imageWidth: imgFinalWidth,
         imageHeight: imgFinalHeight,
-        pieces: pieces2
+        pieces: pieces2,
+        gameStarted: true
       });
-
-      this.disableIcons();
     };
   };
 
@@ -154,11 +150,8 @@ class App extends Component {
   toggleViewImage = () => this.setState({ viewImage: !this.state.viewImage });
 
   render() {
-    const enabled = this.state.enableIcons;
+    const gameStarted = this.state.gameStarted;
     const showSpinner = this.state.showSpinner;
-    const allowClick = fn => {
-      return enabled ? fn : undefined;
-    };
 
     return (
       <div className='App'>
@@ -166,37 +159,41 @@ class App extends Component {
           <Board>
             <Navbar>
               <Icon
-                enabled={enabled}
+                enabled={!gameStarted}
                 src={RefreshIcon}
-                title='Next image'
-                click={allowClick(this.getImage)}
+                title='New image'
+                click={!gameStarted ? this.getImage : undefined}
               />
               <Icon
-                enabled={enabled}
+                enabled={!gameStarted}
                 src={SettingsIcon}
                 title='Settings'
-                click={allowClick(this.toggleSettingsModal)}
+                click={!gameStarted ? this.toggleSettingsModal : undefined}
               />
               <Icon
-                enabled={enabled}
+                enabled={!gameStarted}
                 src={PlayIcon}
                 title='Start'
-                click={allowClick(this.startGame)}
+                click={!gameStarted ? this.startGame : undefined}
               />
               <Icon
-                enabled={!showSpinner}
+                enabled={true}
                 src={ViewIcon}
                 title='View'
-                click={!showSpinner ? this.toggleViewImage : undefined}
+                click={this.toggleViewImage}
               />
             </Navbar>
             <Image
               url={this.state.imageURL}
               imageWidth={this.state.imageWidth}
               imageHeight={this.state.imageHeight}
-              hideImage={this.state.pieces.length > 0}
+              hideImage={gameStarted}
             />
-            {showSpinner && <Spinner />}
+            {showSpinner && (
+              <Backdrop>
+                <Spinner />
+              </Backdrop>
+            )}
             {this.state.pieces}
           </Board>
           <Frame
