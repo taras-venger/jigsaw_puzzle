@@ -23,7 +23,12 @@ const Frame = props => {
     const cells = Array(rows * columns)
       .fill()
       .map((_, i) => (
-        <Cell key={i} cellWidth={cellWidth} cellHeight={cellHeight} />
+        <Cell
+          key={i}
+          dataID={i}
+          cellWidth={cellWidth}
+          cellHeight={cellHeight}
+        />
       ));
     return cells;
   };

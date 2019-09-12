@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Cell = props => {
-  const { cellWidth, cellHeight } = props;
+  const { dataID, cellWidth, cellHeight } = props;
 
   const style = {
     boxSizing: 'border-box',
@@ -33,6 +33,7 @@ const Cell = props => {
   return (
     <div
       className='cell'
+      data-cell-id={dataID}
       style={style}
       onDragStart={dragStart}
       onDragEnter={highlightCell}

@@ -27,7 +27,11 @@ const Piece = props => {
     setTimeout(() => (piece.hidden = true), 0);
   };
 
-  const dragEnd = e => (e.target.hidden = false);
+  const dragEnd = e => {
+    e.target.hidden = false;
+    props.checkGameOver();
+  };
+
   const dragOver = e => e.stopPropagation();
 
   return (

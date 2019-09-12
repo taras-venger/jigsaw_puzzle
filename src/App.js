@@ -27,7 +27,8 @@ class App extends Component {
     gameStarted: false,
     viewImage: false,
     showSettings: false,
-    showSpinner: false
+    showSpinner: false,
+    gameOver: false
   };
 
   getImage = () => {
@@ -49,8 +50,8 @@ class App extends Component {
 
   cutImage = (image, imgWidth, imgHeight, rows, columns) => {
     let pieces = [];
-    for (let x = 0; x < columns; x++) {
-      for (let y = 0; y < rows; y++) {
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < columns; x++) {
         const piece = document.createElement('canvas');
         const context = piece.getContext('2d');
         piece.width = imgWidth / columns; //rounds down
@@ -87,6 +88,7 @@ class App extends Component {
             width={width}
             height={height}
             url={url}
+            checkGameOver={this.checkGameOver}
           />
         );
       });
@@ -149,8 +151,28 @@ class App extends Component {
 
   toggleViewImage = () => this.setState({ viewImage: !this.state.viewImage });
 
+  checkGameOver = () => {
+    const numberOfPieces = this.state.pieces.length;
+    let matches = 0;
+    const cells = [...document.getElementsByClassName('cell')];
+    cells.forEach(cell => {
+      if (cell.childNodes[0]) {
+        cell.getAttribute('data-cell-id') === cell.childNodes[0].id &&
+          matches++;
+      }
+    });
+    numberOfPieces > 0 &&
+      numberOfPieces === matches &&
+      this.setState({ gameOver: true });
+  };
+
+  componentDidUpdate() {
+    setTimeout(() => this.state.gameOver && alert('Well done!'), 0);
+  }
+
   render() {
     const gameStarted = this.state.gameStarted;
+    const gameOver = this.state.gameOver;
     const showSpinner = this.state.showSpinner;
 
     return (
@@ -177,10 +199,10 @@ class App extends Component {
                 click={!gameStarted ? this.startGame : undefined}
               />
               <Icon
-                enabled={true}
+                enabled={!gameOver}
                 src={ViewIcon}
                 title='View'
-                click={this.toggleViewImage}
+                click={!gameOver ? this.toggleViewImage : undefined}
               />
             </Navbar>
             <Image
