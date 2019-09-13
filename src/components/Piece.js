@@ -7,7 +7,7 @@ const Piece = props => {
   const randomX = 30 + Math.floor(Math.random() * (260 - width));
   const randomY = 30 + Math.floor(Math.random() * (620 - height));
 
-  const style = {
+  let style = {
     backgroundImage: `url(${url})`,
     position: 'absolute',
     height: height,
@@ -24,6 +24,7 @@ const Piece = props => {
     e.dataTransfer.setData('pieceID', piece.id);
     e.dataTransfer.setData('offsetX', e.nativeEvent.offsetX);
     e.dataTransfer.setData('offsetY', e.nativeEvent.offsetY);
+    piece.style.zIndex = 1;
     setTimeout(() => (piece.hidden = true), 0);
   };
 
