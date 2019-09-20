@@ -29,7 +29,9 @@ const Piece = props => {
   };
 
   const dragEnd = e => {
-    e.target.hidden = false;
+    const piece = e.target;
+    piece.hidden = false;
+    piece.style.zIndex = 0;
     props.checkGameOver();
   };
 
