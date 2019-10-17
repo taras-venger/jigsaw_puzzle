@@ -151,23 +151,19 @@ class App extends Component {
 
   toggleViewImage = () => this.setState({ viewImage: !this.state.viewImage });
 
+  incrementCounter = () =>
+    this.setState(({ counter }) => ({ counter: counter + 1 }));
+
   checkGameOver = () => {
     const numberOfPieces = this.state.pieces.length;
-    let matches = 0;
-    const cells = [...document.getElementsByClassName('cell')];
-    cells.forEach(cell => {
-      if (cell.childNodes[0]) {
-        cell.getAttribute('data-cell-id') === cell.childNodes[0].id &&
-          matches++;
-      }
-    });
-    numberOfPieces > 0 &&
-      numberOfPieces === matches &&
+    const counter = this.state.counter;
+    counter > 0 &&
+      counter === numberOfPieces &&
       this.setState({ gameOver: true });
   };
 
   componentDidUpdate() {
-    setTimeout(() => this.state.gameOver && alert('Well done!'), 0);
+    this.state.gameOver && setTimeout(() => alert('Well done!'), 0);
   }
 
   render() {
