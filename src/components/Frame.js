@@ -3,7 +3,14 @@ import Cell from './Cell';
 import PropTypes from 'prop-types';
 
 const Frame = props => {
-  const { imageWidth, imageHeight, rows, columns } = props;
+  const {
+    imageWidth,
+    imageHeight,
+    rows,
+    columns,
+    incrementCounter,
+    checkGameOver
+  } = props;
   const cellWidth = imageWidth / columns;
   const cellHeight = imageHeight / rows;
 
@@ -28,6 +35,8 @@ const Frame = props => {
           dataID={i}
           cellWidth={cellWidth}
           cellHeight={cellHeight}
+          incrementCounter={incrementCounter}
+          checkGameOver={checkGameOver}
         />
       ));
     return cells;
@@ -44,7 +53,9 @@ Frame.propTypes = {
   imageWidth: PropTypes.number,
   imageHeight: PropTypes.number,
   rows: PropTypes.number,
-  columns: PropTypes.number
+  columns: PropTypes.number,
+  incrementCounter: PropTypes.func,
+  checkGameOver: PropTypes.func
 };
 
 export default Frame;
