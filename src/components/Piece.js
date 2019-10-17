@@ -20,19 +20,22 @@ const Piece = props => {
   };
 
   const dragStart = e => {
-    const piece = e.target;
-    e.dataTransfer.setData('pieceID', piece.id);
-    e.dataTransfer.setData('offsetX', e.nativeEvent.offsetX);
-    e.dataTransfer.setData('offsetY', e.nativeEvent.offsetY);
-    piece.style.zIndex = 1;
-    setTimeout(() => (piece.hidden = true), 0);
+    if (e.target.draggable) {
+      const piece = e.target;
+      e.dataTransfer.setData('pieceID', piece.id);
+      e.dataTransfer.setData('offsetX', e.nativeEvent.offsetX);
+      e.dataTransfer.setData('offsetY', e.nativeEvent.offsetY);
+      piece.style.zIndex = 1;
+      setTimeout(() => (piece.hidden = true), 0);
+    } else {
+      e.preventDefault();
+    }
   };
 
   const dragEnd = e => {
     const piece = e.target;
     piece.hidden = false;
     piece.style.zIndex = 0;
-    props.checkGameOver();
   };
 
   const dragOver = e => e.stopPropagation();
