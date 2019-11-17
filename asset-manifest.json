@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/jigsaw_puzzle/static/css/main.008a8bf4.chunk.css",
-    "main.js": "/jigsaw_puzzle/static/js/main.333fadd3.chunk.js",
-    "main.js.map": "/jigsaw_puzzle/static/js/main.333fadd3.chunk.js.map",
+    "main.js": "/jigsaw_puzzle/static/js/main.95b0906c.chunk.js",
+    "main.js.map": "/jigsaw_puzzle/static/js/main.95b0906c.chunk.js.map",
     "runtime~main.js": "/jigsaw_puzzle/static/js/runtime~main.5496d0b0.js",
     "runtime~main.js.map": "/jigsaw_puzzle/static/js/runtime~main.5496d0b0.js.map",
     "static/js/2.edae7ad7.chunk.js": "/jigsaw_puzzle/static/js/2.edae7ad7.chunk.js",
     "static/js/2.edae7ad7.chunk.js.map": "/jigsaw_puzzle/static/js/2.edae7ad7.chunk.js.map",
     "index.html": "/jigsaw_puzzle/index.html",
-    "precache-manifest.6f4f0515e9402adc0331d2d5bc6ef434.js": "/jigsaw_puzzle/precache-manifest.6f4f0515e9402adc0331d2d5bc6ef434.js",
+    "precache-manifest.6ab161eae17e73a5a14f3c3d1619ea86.js": "/jigsaw_puzzle/precache-manifest.6ab161eae17e73a5a14f3c3d1619ea86.js",
     "service-worker.js": "/jigsaw_puzzle/service-worker.js",
     "static/css/main.008a8bf4.chunk.css.map": "/jigsaw_puzzle/static/css/main.008a8bf4.chunk.css.map",
     "static/media/refresh.png": "/jigsaw_puzzle/static/media/refresh.0b096096.png"
